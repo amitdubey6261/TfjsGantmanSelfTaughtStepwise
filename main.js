@@ -1,16 +1,17 @@
 import * as tf from "@tensorflow/tfjs-core";
-import * as toxicity from '@tensorflow-models/toxicity'
 
-let model 
-const threshold = 0.2 ;
+//first tensor
 
-async function loadModel(){
-    model = await toxicity.load(threshold);
-    const sentances = [" I love you "];
-    console.log("idr");
-    model.classify(sentances).then((pred)=>{
-        console.log(JSON.stringify(pred , null , 2))
-    })
-}
+/*const d1 = [10,20,30]
+const first = tf.tensor1d(d1)
+console.log(first)*/
 
-loadModel();
+
+//int32 3X3 array :
+const first = tf.tensor([1.1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9] , [ 3 , 3] , 'int32')
+const second = tf.tensor([true , false , false] , null , 'bool')
+first.print()
+second.print()
+
+
+
