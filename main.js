@@ -1,17 +1,24 @@
-import * as tf from "@tensorflow/tfjs-core";
+import * as tf from '@tensorflow/tfjs-core';
 
-//first tensor
+let v1 , v2 , v3 ; 
 
-/*const d1 = [10,20,30]
-const first = tf.tensor1d(d1)
-console.log(first)*/
+console.log(tf.memory().numTensors)
 
+tf.tidy(()=>{
+    v1 = tf.tensor([1,2,3]);
+    v2 = tf.tensor([4,5,6]);
+    v3 = tf.tensor([7,6,2]);
+    
+    console.log(tf.memory().numTensors)
+    
+    tf.keep(v1);
+    
+    return v2 ; 
+})
 
-//int32 3X3 array :
-const first = tf.tensor([1.1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9] , [ 3 , 3] , 'int32')
-const second = tf.tensor([true , false , false] , null , 'bool')
-first.print()
-second.print()
+console.log(tf.memory().numTensors)
 
+tf.dispose(v1)
+tf.dispose(v2)
 
-
+console.log(tf.memory().numTensors)
