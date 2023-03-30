@@ -1,29 +1,15 @@
 import * as tf from '@tensorflow/tfjs'
 
-const newSize = [768, 560]
+const startPoint = [100,200,0] // 0 RGB , 2 BlackWhite
+const newSize = [265, 245]
 const lgi = document.getElementById("lgi");
-const nnCavas = document.getElementById("nnCanvas");
+const cropCavas = document.getElementById("cropCanvas");
+const lgiTensor = tf.browser.fromPixels(lgi);
 
-console.log()
-const blCavas = document.getElementById("blCanvas");
-const gantTensor = tf.browser.fromPixels(lgi);
 
-const nnResizeTensor = tf.image.resizeNearestNeighbor(
-    gantTensor,
-    newSize,
-    true
-).asType('int32')
+const cropped = tf.slice( lgiTensor , startPoint , newSize );
 
-tf.browser.toPixels(nnResizeTensor , nnCavas).then(()=>{
-    nnResizeTensor.dispose();
-})
 
-const blResizeTensor = tf.image.resizeBilinear(
-    gantTensor,
-    newSize,
-    true
-).asType('int32')
-
-tf.browser.toPixels(blResizeTensor, blCavas).then(() => {
-    nnResizeTensor.dispose();
+tf.browser.toPixels(cropped , cropCavas).then(()=>{
+    cropped.dispose();
 })
