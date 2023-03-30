@@ -1,11 +1,8 @@
 import * as tf from "@tensorflow/tfjs-core";
 
-const cake = new Image()
-cake.crossOrigin = 'anonymous'
-cake.src = './gant.jpg'
-cake.onload = () => {
- const cakeTensor = tf.browser.fromPixels(cake)
- console.log(
- `Successful conversion from Image() to a ${cakeTensor.shape} tensor`
- )
-}
+const myImage = document.getElementById('gant');
+const imagetensor = tf.browser.fromPixels(myImage);
+
+const flippedTensor = tf.reverse( imagetensor , 1); // 0 , 1
+
+tf.browser.toPixels(flippedTensor , document.getElementById('canvas'))
