@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css">
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div>
-      <img id="gant" src="gant.jpg" alt="not_found">
-    </div>
-    <div>
-      <canvas id="canvas"></canvas>
-    </div>
-  </body>
-  <script type="module" src="./main.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <img id="lgi" src="littleGant.jpg" alt="">
+  <div>
+    <canvas id="nnCanvas"></canvas> <!-- nearest neighbor-->
+  </div>
+  <div>
+    <canvas id="blCanvas"></canvas> <!-- bilinear -->
+  </div>
+</body>
+<script type="module" src="./main.js"></script>
 </html>
