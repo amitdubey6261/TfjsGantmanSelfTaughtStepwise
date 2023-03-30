@@ -1,8 +1,31 @@
-import * as tf from "@tensorflow/tfjs-core";
+import * as tf from "@tensorflow/tfjs";
 
-const myImage = document.getElementById('gant');
-const imagetensor = tf.browser.fromPixels(myImage);
+/* batch of 4  , 5X5 RGB image ---->
 
-const flippedTensor = tf.reverse( imagetensor , 1); // 0 , 1
+//batch increase the dimension ex :
 
-tf.browser.toPixels(flippedTensor , document.getElementById('canvas'))
+
+[
+    [120 , 120 , 3],
+    [120 , 120 , 3],
+    [120 , 120 , 3],
+    [120 , 120 , 3],
+]
+
+an extra bracket is require to grab all thus 3d become 4d ......
+
+*/
+
+const cakeImg = document.getElementById("gant")
+const canvas = document.getElementById("canvas")
+
+const flipCake = tf.tidy(()=>{
+    const cakeTensor = tf.expandDims(
+        tf.browser.fromPixels(cakeImg).asType('float32')
+    );
+    return tf.squeeze(tf.image.flipLeftRight(cakeTensor)).asType("int32")
+})
+
+tf.browser.toPixels(flipCake , canvas).then(()=>{
+    flipCake.dispose()
+})
