@@ -1,32 +1,11 @@
-import * as tf from '@tensorflow/tfjs-core';
-import $ from 'jquery'
+import * as tf from "@tensorflow/tfjs-core";
 
-const v = tf.tensor(
-    [
-        [
-            [1,1,1],
-            [0,0,0],
-            [1,1,1],
-            [0,0,0],
-        ] ,
-        [
-            [1,1,1],
-            [0,0,0],
-            [1,1,1],
-            [0,0,0],
-        ] ,
-        [
-            [1,1,1],
-            [0,0,0],
-            [1,1,1],
-            [0,0,0],
-        ]
-    ]
-)
-
-let canvas = document.getElementById('randomness')
-console.log(canvas)
-
-tf.browser.toPixels( v , canvas ).then(()=>{
-    v.dispose();
-})
+const cake = new Image()
+cake.crossOrigin = 'anonymous'
+cake.src = './gant.jpg'
+cake.onload = () => {
+ const cakeTensor = tf.browser.fromPixels(cake)
+ console.log(
+ `Successful conversion from Image() to a ${cakeTensor.shape} tensor`
+ )
+}
